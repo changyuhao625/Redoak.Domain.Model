@@ -12,9 +12,9 @@ Z:\Documents\Redoak\Redoak.Domain.Model\obj\Debug\netcoreapp2.0\Redoak.Domain.Mo
 \\Mac\Home\Documents\Redoak\Redoak.Domain.Model\bin\Debug\netcoreapp2.0\Redoak.Domain.Model.deps.json
 \\Mac\Home\Documents\Redoak\Redoak.Domain.Model\bin\Debug\netcoreapp2.0\Redoak.Domain.Model.dll
 \\Mac\Home\Documents\Redoak\Redoak.Domain.Model\bin\Debug\netcoreapp2.0\Redoak.Domain.Model.pdb
+\\Mac\Home\Documents\Redoak\Redoak.Domain.Model\obj\Debug\netcoreapp2.0\Redoak.Domain.Model.csprojResolveAssemblyReference.cache
 \\Mac\Home\Documents\Redoak\Redoak.Domain.Model\obj\Debug\netcoreapp2.0\Redoak.Domain.Model.csproj.CoreCompileInputs.cache
 \\Mac\Home\Documents\Redoak\Redoak.Domain.Model\obj\Debug\netcoreapp2.0\Redoak.Domain.Model.AssemblyInfoInputs.cache
 \\Mac\Home\Documents\Redoak\Redoak.Domain.Model\obj\Debug\netcoreapp2.0\Redoak.Domain.Model.AssemblyInfo.cs
 \\Mac\Home\Documents\Redoak\Redoak.Domain.Model\obj\Debug\netcoreapp2.0\Redoak.Domain.Model.dll
 \\Mac\Home\Documents\Redoak\Redoak.Domain.Model\obj\Debug\netcoreapp2.0\Redoak.Domain.Model.pdb
-\\Mac\Home\Documents\Redoak\Redoak.Domain.Model\obj\Debug\netcoreapp2.0\Redoak.Domain.Model.csprojResolveAssemblyReference.cache
