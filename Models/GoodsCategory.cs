@@ -14,12 +14,14 @@ namespace Redoak.Domain.Model.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int GoodsCategoryId { get; set; }
+        public string GoodsCategoryName { get; set; }
+        public string ParentCategoryId { get; set; }
+        public string Note { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime UpdateDate { get; set; }
+        public string UpdateUser { get; set; }
 
-        public string Name { get; set; }
-        public DateTime DateCreate { get; set; }
-        public DateTime DateUpdate { get; set; }
-        public DateTime UpdateUser { get; set; }
         public ICollection<Goods> Goods { get; set; }
     }
 }
