@@ -9,9 +9,9 @@ namespace Redoak.Domain.Model.Models
     {
         [Key]
         [Column(TypeName = "int")]
-        public int SupplierId { get; set; }
+        public int Id { get; set; }
         [Column(TypeName = "nvarchar(20)")]
-        public string SupplierName { get; set; }
+        public string Name { get; set; }
         [Column(TypeName = "nvarchar(20)")]
         public string ContactPerson { get; set; }
         [Column(TypeName = "nvarchar(100)")]

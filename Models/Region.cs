@@ -14,9 +14,9 @@ namespace Redoak.Domain.Model.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int RegionId { get; set; }
+        public int Id { get; set; }
         [Column(TypeName = "nvarchar(20)")]
-        public string RegionName { get; set; }
+        public string Name { get; set; }
         [Column(TypeName = "int")]
         public int ParentRegionId { get; set; }
         [Column(TypeName = "varchar(10)")]

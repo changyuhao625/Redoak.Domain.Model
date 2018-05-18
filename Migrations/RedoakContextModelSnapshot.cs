@@ -177,7 +177,7 @@ namespace Redoak.Domain.Model.Migrations
 
             modelBuilder.Entity("Redoak.Domain.Model.Models.Customer", b =>
                 {
-                    b.Property<int>("CustomerId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -193,12 +193,12 @@ namespace Redoak.Domain.Model.Migrations
                     b.Property<string>("ContactPhone")
                         .HasColumnType("varchar(20)");
 
-                    b.Property<string>("CustomerName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("RegionId");
 
-                    b.HasKey("CustomerId");
+                    b.HasKey("Id");
 
                     b.HasIndex("RegionId");
 
@@ -207,14 +207,14 @@ namespace Redoak.Domain.Model.Migrations
 
             modelBuilder.Entity("Redoak.Domain.Model.Models.Goods", b =>
                 {
-                    b.Property<int>("GoodsId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreateDate");
 
                     b.Property<int>("GoodsCategoryId");
 
-                    b.Property<string>("GoodsName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("UpdateDate");
@@ -222,7 +222,7 @@ namespace Redoak.Domain.Model.Migrations
                     b.Property<string>("UpdateUser")
                         .HasColumnType("nvarchar(10)");
 
-                    b.HasKey("GoodsId");
+                    b.HasKey("Id");
 
                     b.HasIndex("GoodsCategoryId");
 
@@ -231,12 +231,12 @@ namespace Redoak.Domain.Model.Migrations
 
             modelBuilder.Entity("Redoak.Domain.Model.Models.GoodsCategory", b =>
                 {
-                    b.Property<int>("GoodsCategoryId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreateDate");
 
-                    b.Property<string>("GoodsCategoryName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Note")
@@ -250,21 +250,21 @@ namespace Redoak.Domain.Model.Migrations
                     b.Property<string>("UpdateUser")
                         .HasColumnType("nvarchar(10)");
 
-                    b.HasKey("GoodsCategoryId");
+                    b.HasKey("Id");
 
                     b.ToTable("GoodsCategory");
                 });
 
             modelBuilder.Entity("Redoak.Domain.Model.Models.GoodsSpec", b =>
                 {
-                    b.Property<int>("GoodsSpecId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreateDate");
 
                     b.Property<int>("GoodsId");
 
-                    b.Property<string>("GoodsSpecName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("UpdateDate");
@@ -272,7 +272,7 @@ namespace Redoak.Domain.Model.Migrations
                     b.Property<string>("UpdateUser")
                         .HasColumnType("nvarchar(10)");
 
-                    b.HasKey("GoodsSpecId");
+                    b.HasKey("Id");
 
                     b.HasIndex("GoodsId");
 
@@ -281,20 +281,20 @@ namespace Redoak.Domain.Model.Migrations
 
             modelBuilder.Entity("Redoak.Domain.Model.Models.Purchase", b =>
                 {
-                    b.Property<int>("PurchaseId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("PurchaseName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("PurchaseId");
+                    b.HasKey("Id");
 
                     b.ToTable("Purchase");
                 });
 
             modelBuilder.Entity("Redoak.Domain.Model.Models.PurchaseOrder", b =>
                 {
-                    b.Property<string>("PurchaseOrderId")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("GoodsSpecId");
@@ -315,7 +315,7 @@ namespace Redoak.Domain.Model.Migrations
                     b.Property<double>("UnitPrice")
                         .HasColumnType("money");
 
-                    b.HasKey("PurchaseOrderId");
+                    b.HasKey("Id");
 
                     b.HasIndex("GoodsSpecId");
 
@@ -347,14 +347,14 @@ namespace Redoak.Domain.Model.Migrations
 
             modelBuilder.Entity("Redoak.Domain.Model.Models.Region", b =>
                 {
-                    b.Property<int>("RegionId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("ParentRegionId")
                         .HasColumnType("int");
-
-                    b.Property<string>("RegionName")
-                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime");
@@ -362,27 +362,27 @@ namespace Redoak.Domain.Model.Migrations
                     b.Property<string>("UpdateUser")
                         .HasColumnType("varchar(10)");
 
-                    b.HasKey("RegionId");
+                    b.HasKey("Id");
 
                     b.ToTable("Region");
                 });
 
             modelBuilder.Entity("Redoak.Domain.Model.Models.Sale", b =>
                 {
-                    b.Property<int>("SaleId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("SaleName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("SaleId");
+                    b.HasKey("Id");
 
                     b.ToTable("Sale");
                 });
 
             modelBuilder.Entity("Redoak.Domain.Model.Models.SalesOrder", b =>
                 {
-                    b.Property<int>("SalesOrderId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("CustomerId");
@@ -403,7 +403,7 @@ namespace Redoak.Domain.Model.Migrations
                     b.Property<double>("UnitPrice")
                         .HasColumnType("money");
 
-                    b.HasKey("SalesOrderId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
 
@@ -416,7 +416,7 @@ namespace Redoak.Domain.Model.Migrations
 
             modelBuilder.Entity("Redoak.Domain.Model.Models.Supplier", b =>
                 {
-                    b.Property<int>("SupplierId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -432,10 +432,10 @@ namespace Redoak.Domain.Model.Migrations
                     b.Property<string>("ContactPhone")
                         .HasColumnType("varchar(20)");
 
-                    b.Property<string>("SupplierName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("SupplierId");
+                    b.HasKey("Id");
 
                     b.ToTable("Supplier");
                 });
@@ -503,7 +503,7 @@ namespace Redoak.Domain.Model.Migrations
 
             modelBuilder.Entity("Redoak.Domain.Model.Models.PurchaseOrder", b =>
                 {
-                    b.HasOne("Redoak.Domain.Model.Models.GoodsSpec", "GoodsSpec")
+                    b.HasOne("Redoak.Domain.Model.Models.GoodsSpec", "Spec")
                         .WithMany()
                         .HasForeignKey("GoodsSpecId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -521,7 +521,7 @@ namespace Redoak.Domain.Model.Migrations
 
             modelBuilder.Entity("Redoak.Domain.Model.Models.Quotation", b =>
                 {
-                    b.HasOne("Redoak.Domain.Model.Models.GoodsSpec", "GoodsSpec")
+                    b.HasOne("Redoak.Domain.Model.Models.GoodsSpec", "Spec")
                         .WithMany()
                         .HasForeignKey("GoodsSpecId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -534,7 +534,7 @@ namespace Redoak.Domain.Model.Migrations
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Redoak.Domain.Model.Models.GoodsSpec", "GoodsSpec")
+                    b.HasOne("Redoak.Domain.Model.Models.GoodsSpec", "Spec")
                         .WithMany()
                         .HasForeignKey("GoodsSpecId")
                         .OnDelete(DeleteBehavior.Cascade);

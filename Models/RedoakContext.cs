@@ -142,7 +142,7 @@ namespace Redoak.Domain.Model.Models
                 .HasForeignKey(c => c.RegionId);
 
             modelBuilder.Entity<Quotation>()
-                .HasOne<GoodsSpec>(q => q.GoodsSpec)
+                .HasOne<GoodsSpec>(q => q.Spec)
                 .WithMany()
                 .HasForeignKey(q => q.GoodsSpecId);
 
@@ -157,7 +157,7 @@ namespace Redoak.Domain.Model.Models
                 .HasForeignKey(so => so.CustomerId);
 
             modelBuilder.Entity<SalesOrder>()
-                .HasOne<GoodsSpec>(so => so.GoodsSpec)
+                .HasOne<GoodsSpec>(so => so.Spec)
                 .WithMany()
                 .HasForeignKey(so => so.GoodsSpecId);
 
@@ -172,7 +172,7 @@ namespace Redoak.Domain.Model.Models
                 .HasForeignKey(po => po.SupplierId);
 
             modelBuilder.Entity<PurchaseOrder>()
-                .HasOne<GoodsSpec>(po => po.GoodsSpec)
+                .HasOne<GoodsSpec>(po => po.Spec)
                 .WithMany()
                 .HasForeignKey(po => po.GoodsSpecId);
             

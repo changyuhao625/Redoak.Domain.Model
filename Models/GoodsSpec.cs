@@ -8,9 +8,9 @@ namespace Redoak.Domain.Model.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int GoodsSpecId { get; set; }
+        public int Id { get; set; }
         [Column(TypeName = "nvarchar(20)")]
-        public string GoodsSpecName { get; set; }
+        public string Name { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
         [Column(TypeName = "nvarchar(10)")]

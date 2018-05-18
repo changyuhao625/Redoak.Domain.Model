@@ -9,7 +9,7 @@ namespace Redoak.Domain.Model.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int SalesOrderId { get; set; }
+        public int Id { get; set; }
         [Column(TypeName = "decimal")]
         public double Quantity { get; set; }
         [Column(TypeName = "money")]
@@ -24,6 +24,6 @@ namespace Redoak.Domain.Model.Models
         public int CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
         public int GoodsSpecId { get; set; }
-        public virtual GoodsSpec GoodsSpec { get; set; }
+        public virtual GoodsSpec Spec { get; set; }
     }
 }

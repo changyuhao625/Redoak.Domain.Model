@@ -18,6 +18,6 @@ namespace Redoak.Domain.Model.Models
         [Column(TypeName = "varchar(10)")]
         public string UpdateUser { get; set; }
 
-        public virtual GoodsSpec GoodsSpec { get; set; }
+        public virtual GoodsSpec Spec { get; set; }
     }
 }
