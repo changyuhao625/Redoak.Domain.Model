@@ -15,14 +15,15 @@ namespace Redoak.Domain.Model.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int GoodsId { get; set; }
+        [Column(TypeName = "nvarchar(20)")]
         public string GoodsName { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
+        [Column(TypeName = "nvarchar(10)")]
         public string UpdateUser { get; set; }
-        public ICollection<GoodsSpec> GoodsSpecs { get; set; }
+        public virtual ICollection<GoodsSpec> GoodsSpecs { get; set; }
 
-        [ForeignKey("GoodsCategoryId")]
-        public string GoodsCategoryId { get; set; }
-        public GoodsCategory Category { get; set; }
+        public int GoodsCategoryId { get; set; }
+        public virtual GoodsCategory Category { get; set; }
     }
 }

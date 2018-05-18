@@ -7,6 +7,7 @@ namespace Redoak.Domain.Model.Models
         public RedoakContext(DbContextOptions<RedoakContext> options)
             : base(options)
         {
+            //Database
         }
 
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
@@ -16,9 +17,18 @@ namespace Redoak.Domain.Model.Models
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
+
         public virtual DbSet<GoodsCategory> GoodsCategory { get; set; }
         public virtual DbSet<Goods> Goods { get; set; }
         public virtual DbSet<GoodsSpec> GoodsSpec { get; set; }
+        public virtual DbSet<Region> Region { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<Supplier> Supplier { get; set; }
+        public virtual DbSet<Sale> Sale { get; set; }
+        public virtual DbSet<SalesOrder> SalesOrder { get; set; }
+        public virtual DbSet<Purchase> Purchase { get; set; }
+        public virtual DbSet<PurchaseOrder> PurchaseOrder { get; set; }
+        public virtual DbSet<Quotation> Quotation { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -115,45 +125,60 @@ namespace Redoak.Domain.Model.Models
 
             #endregion
 
-            #region Goods
+            // Entity Relations
+            modelBuilder.Entity<Goods>()
+                .HasOne<GoodsCategory>(g => g.Category)
+                .WithMany(c => c.Goods)
+                .HasForeignKey(g => g.GoodsCategoryId);
 
-            modelBuilder.Entity<Goods>(entity =>
-            {
-                entity.HasIndex(e => e.Id)
-                    .HasName("GoodsId")
-                    .IsUnique();
+            modelBuilder.Entity<GoodsSpec>()
+                .HasOne<Goods>(s => s.Goods)
+                .WithMany(g => g.GoodsSpecs)
+                .HasForeignKey(s => s.GoodsId);
 
-                entity.Property(e => e.CategoryId);
-                entity.Property(e => e.Name);
-                entity.Property(e => e.DateCreate);
-                entity.Property(e => e.DateUpdate);
-                entity.Property(e => e.UpdateUser);
-            });
+            modelBuilder.Entity<Customer>()
+                .HasOne<Region>(c => c.Region)
+                .WithMany(r => r.Customers)
+                .HasForeignKey(c => c.RegionId);
 
-            modelBuilder.Entity<GoodsSpec>(entity =>
-            {
-                entity.HasIndex(e => e.Id)
-                    .HasName("GoodsSpecId")
-                    .IsUnique();
+            modelBuilder.Entity<Quotation>()
+                .HasOne<GoodsSpec>(q => q.GoodsSpec)
+                .WithMany()
+                .HasForeignKey(q => q.GoodsSpecId);
 
-                entity.Property(e => e.Name);
-                entity.Property(e => e.DateCreate);
-                entity.Property(e => e.DateUpdate);
-                entity.Property(e => e.UpdateUser);
-            });
+            modelBuilder.Entity<SalesOrder>()
+                .HasOne<Sale>(so => so.Sale)
+                .WithMany().
+                HasForeignKey(so => so.SaleId);
 
-            modelBuilder.Entity<GoodsCategory>(entity =>
-            {
-                entity.HasIndex(e => e.Id)
-                    .HasName("GoodsCategoryId")
-                    .IsUnique();
+            modelBuilder.Entity<SalesOrder>()
+                .HasOne<Customer>(so => so.Customer)
+                .WithMany()
+                .HasForeignKey(so => so.CustomerId);
 
-                entity.Property(e => e.Name);
-                entity.Property(e => e.DateCreate);
-                entity.Property(e => e.DateUpdate);
-                entity.Property(e => e.UpdateUser);
-            });
-            #endregion
+            modelBuilder.Entity<SalesOrder>()
+                .HasOne<GoodsSpec>(so => so.GoodsSpec)
+                .WithMany()
+                .HasForeignKey(so => so.GoodsSpecId);
+
+            modelBuilder.Entity<PurchaseOrder>()
+                .HasOne<Purchase>(po => po.Purchase)
+                .WithMany()
+                .HasForeignKey(po => po.PurchaseId);
+
+            modelBuilder.Entity<PurchaseOrder>()
+                .HasOne<Supplier>(po => po.Supplier)
+                .WithMany()
+                .HasForeignKey(po => po.SupplierId);
+
+            modelBuilder.Entity<PurchaseOrder>()
+                .HasOne<GoodsSpec>(po => po.GoodsSpec)
+                .WithMany()
+                .HasForeignKey(po => po.GoodsSpecId);
+            
+            // Composite Key
+            modelBuilder.Entity<Quotation>()
+                .HasKey(p => new { p.GoodsSpecId, p.ProposeDate });
         }
     }
 }

@@ -10,19 +10,20 @@ namespace Redoak.Domain.Model.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string PurchaseOrderId { get; set; }
-        public int Quantity { get; set; }
-        public int UnitPrice { get; set; }
-        public int TotalPrice { get; set; }
+        [Column(TypeName = "decimal")]
+        public double Quantity { get; set; }
+        [Column(TypeName = "money")]
+        public double UnitPrice { get; set; }
+        [Column(TypeName = "money")]
+        public double TotalPrice { get; set; }
+        [Column(TypeName = "nvarchar(400)")]
         public string Note { get; set; }
 
-        [ForeignKey("PurchaseId")]
         public int PurchaseId { get; set; }
-        public Purchase Purchase { get; set; }
-        [ForeignKey("SupplierId")]
+        public virtual Purchase Purchase { get; set; }
         public int SupplierId { get; set; }
-        public Supplier Supplier { get; set; }
-        [ForeignKey("GoodsSpecId")]
+        public virtual Supplier Supplier { get; set; }
         public int GoodsSpecId { get; set; }
-        public GoodsSpec GoodsSpec { get; set; }
+        public virtual GoodsSpec GoodsSpec { get; set; }
     }
 }

@@ -15,10 +15,15 @@ namespace Redoak.Domain.Model.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RegionId { get; set; }
+        [Column(TypeName = "nvarchar(20)")]
         public string RegionName { get; set; }
-        public string ParentRegion { get; set; }
+        [Column(TypeName = "int")]
+        public int ParentRegionId { get; set; }
+        [Column(TypeName = "varchar(10)")]
         public string UpdateUser { get; set; }
+        [Column(TypeName = "datetime")]
         public DateTime UpdateDate { get; set; }
-        public ICollection<Customer> Customers { get; set; }
-    }    
+
+        public virtual ICollection<Customer> Customers { get; set; }
+    }
 }

@@ -8,16 +8,20 @@ namespace Redoak.Domain.Model.Models
     public class Customer
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column(TypeName = "int")]
         public int CustomerId { get; set; }
+        [Column(TypeName = "nvarchar(20)")]
         public string CustomerName { get; set; }
+        [Column(TypeName = "nvarchar(20)")]
         public string ContactPerson { get; set; }
+        [Column(TypeName = "nvarchar(100)")]
         public string Address { get; set; }
+        [Column(TypeName = "nvarchar(20)")]
         public string ContactEmail { get; set; }
+        [Column(TypeName = "varchar(20)")]
         public string ContactPhone { get; set; }
-        
-        [ForeignKey("RegionKey")]
-        public string RegionId { get; set; }
-        public Region Region { get; set; }
+
+        public int RegionId { get; set; }
+        public virtual Region Region { get; set; }
     }
 }

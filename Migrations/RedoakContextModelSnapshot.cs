@@ -175,78 +175,269 @@ namespace Redoak.Domain.Model.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Redoak.Domain.Model.Models.Customer", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ContactEmail")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("ContactPerson")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("ContactPhone")
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("CustomerName")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int>("RegionId");
+
+                    b.HasKey("CustomerId");
+
+                    b.HasIndex("RegionId");
+
+                    b.ToTable("Customer");
+                });
+
             modelBuilder.Entity("Redoak.Domain.Model.Models.Goods", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("GoodsId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CategoryId");
+                    b.Property<DateTime>("CreateDate");
 
-                    b.Property<DateTime>("DateCreate");
+                    b.Property<int>("GoodsCategoryId");
 
-                    b.Property<DateTime>("DateUpdate");
+                    b.Property<string>("GoodsName")
+                        .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("Name");
+                    b.Property<DateTime>("UpdateDate");
 
-                    b.Property<string>("UpdateUser");
+                    b.Property<string>("UpdateUser")
+                        .HasColumnType("nvarchar(10)");
 
-                    b.HasKey("Id");
+                    b.HasKey("GoodsId");
 
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasName("GoodsId");
+                    b.HasIndex("GoodsCategoryId");
 
                     b.ToTable("Goods");
                 });
 
             modelBuilder.Entity("Redoak.Domain.Model.Models.GoodsCategory", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("GoodsCategoryId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateCreate");
+                    b.Property<DateTime>("CreateDate");
 
-                    b.Property<DateTime>("DateUpdate");
+                    b.Property<string>("GoodsCategoryName")
+                        .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(400)");
 
-                    b.Property<DateTime>("UpdateUser");
+                    b.Property<int>("ParentCategoryId")
+                        .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<DateTime>("UpdateDate");
 
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasName("GoodsCategoryId");
+                    b.Property<string>("UpdateUser")
+                        .HasColumnType("nvarchar(10)");
+
+                    b.HasKey("GoodsCategoryId");
 
                     b.ToTable("GoodsCategory");
                 });
 
             modelBuilder.Entity("Redoak.Domain.Model.Models.GoodsSpec", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("GoodsSpecId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateCreate");
+                    b.Property<DateTime>("CreateDate");
 
-                    b.Property<DateTime>("DateUpdate");
+                    b.Property<int>("GoodsId");
 
-                    b.Property<int?>("GoodsId");
+                    b.Property<string>("GoodsSpecName")
+                        .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("Name");
+                    b.Property<DateTime>("UpdateDate");
 
-                    b.Property<DateTime>("UpdateUser");
+                    b.Property<string>("UpdateUser")
+                        .HasColumnType("nvarchar(10)");
 
-                    b.HasKey("Id");
+                    b.HasKey("GoodsSpecId");
 
                     b.HasIndex("GoodsId");
 
-                    b.HasIndex("Id")
-                        .IsUnique()
-                        .HasName("GoodsSpecId");
-
                     b.ToTable("GoodsSpec");
+                });
+
+            modelBuilder.Entity("Redoak.Domain.Model.Models.Purchase", b =>
+                {
+                    b.Property<int>("PurchaseId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("PurchaseName")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("PurchaseId");
+
+                    b.ToTable("Purchase");
+                });
+
+            modelBuilder.Entity("Redoak.Domain.Model.Models.PurchaseOrder", b =>
+                {
+                    b.Property<string>("PurchaseOrderId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("GoodsSpecId");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(400)");
+
+                    b.Property<int>("PurchaseId");
+
+                    b.Property<double>("Quantity")
+                        .HasColumnType("decimal");
+
+                    b.Property<int>("SupplierId");
+
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("money");
+
+                    b.Property<double>("UnitPrice")
+                        .HasColumnType("money");
+
+                    b.HasKey("PurchaseOrderId");
+
+                    b.HasIndex("GoodsSpecId");
+
+                    b.HasIndex("PurchaseId");
+
+                    b.HasIndex("SupplierId");
+
+                    b.ToTable("PurchaseOrder");
+                });
+
+            modelBuilder.Entity("Redoak.Domain.Model.Models.Quotation", b =>
+                {
+                    b.Property<int>("GoodsSpecId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ProposeDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("money");
+
+                    b.Property<string>("UpdateUser")
+                        .HasColumnType("varchar(10)");
+
+                    b.HasKey("GoodsSpecId", "ProposeDate");
+
+                    b.ToTable("Quotation");
+                });
+
+            modelBuilder.Entity("Redoak.Domain.Model.Models.Region", b =>
+                {
+                    b.Property<int>("RegionId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ParentRegionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RegionName")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdateUser")
+                        .HasColumnType("varchar(10)");
+
+                    b.HasKey("RegionId");
+
+                    b.ToTable("Region");
+                });
+
+            modelBuilder.Entity("Redoak.Domain.Model.Models.Sale", b =>
+                {
+                    b.Property<int>("SaleId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("SaleName")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("SaleId");
+
+                    b.ToTable("Sale");
+                });
+
+            modelBuilder.Entity("Redoak.Domain.Model.Models.SalesOrder", b =>
+                {
+                    b.Property<int>("SalesOrderId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CustomerId");
+
+                    b.Property<int>("GoodsSpecId");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(400)");
+
+                    b.Property<double>("Quantity")
+                        .HasColumnType("decimal");
+
+                    b.Property<int>("SaleId");
+
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("money");
+
+                    b.Property<double>("UnitPrice")
+                        .HasColumnType("money");
+
+                    b.HasKey("SalesOrderId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("GoodsSpecId");
+
+                    b.HasIndex("SaleId");
+
+                    b.ToTable("SalesOrder");
+                });
+
+            modelBuilder.Entity("Redoak.Domain.Model.Models.Supplier", b =>
+                {
+                    b.Property<int>("SupplierId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ContactEmail")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("ContactPerson")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("ContactPhone")
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("SupplierName")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("SupplierId");
+
+                    b.ToTable("Supplier");
                 });
 
             modelBuilder.Entity("Redoak.Domain.Model.Models.AspNetRoleClaims", b =>
@@ -286,11 +477,19 @@ namespace Redoak.Domain.Model.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Redoak.Domain.Model.Models.Customer", b =>
+                {
+                    b.HasOne("Redoak.Domain.Model.Models.Region", "Region")
+                        .WithMany("Customers")
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Redoak.Domain.Model.Models.Goods", b =>
                 {
                     b.HasOne("Redoak.Domain.Model.Models.GoodsCategory", "Category")
                         .WithMany("Goods")
-                        .HasForeignKey("CategoryId")
+                        .HasForeignKey("GoodsCategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -298,7 +497,52 @@ namespace Redoak.Domain.Model.Migrations
                 {
                     b.HasOne("Redoak.Domain.Model.Models.Goods", "Goods")
                         .WithMany("GoodsSpecs")
-                        .HasForeignKey("GoodsId");
+                        .HasForeignKey("GoodsId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Redoak.Domain.Model.Models.PurchaseOrder", b =>
+                {
+                    b.HasOne("Redoak.Domain.Model.Models.GoodsSpec", "GoodsSpec")
+                        .WithMany()
+                        .HasForeignKey("GoodsSpecId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Redoak.Domain.Model.Models.Purchase", "Purchase")
+                        .WithMany()
+                        .HasForeignKey("PurchaseId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Redoak.Domain.Model.Models.Supplier", "Supplier")
+                        .WithMany()
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Redoak.Domain.Model.Models.Quotation", b =>
+                {
+                    b.HasOne("Redoak.Domain.Model.Models.GoodsSpec", "GoodsSpec")
+                        .WithMany()
+                        .HasForeignKey("GoodsSpecId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Redoak.Domain.Model.Models.SalesOrder", b =>
+                {
+                    b.HasOne("Redoak.Domain.Model.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Redoak.Domain.Model.Models.GoodsSpec", "GoodsSpec")
+                        .WithMany()
+                        .HasForeignKey("GoodsSpecId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Redoak.Domain.Model.Models.Sale", "Sale")
+                        .WithMany()
+                        .HasForeignKey("SaleId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

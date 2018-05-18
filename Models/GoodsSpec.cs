@@ -9,13 +9,14 @@ namespace Redoak.Domain.Model.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int GoodsSpecId { get; set; }
+        [Column(TypeName = "nvarchar(20)")]
         public string GoodsSpecName { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
+        [Column(TypeName = "nvarchar(10)")]
         public string UpdateUser { get; set; }
 
-        [ForeignKey("GoodsId")]
-        public string GoodsId { get; set; }
-        public Goods Goods { get; set; }
+        public int GoodsId { get; set; }
+        public virtual Goods Goods { get; set; }
     }
 }

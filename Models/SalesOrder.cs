@@ -8,21 +8,22 @@ namespace Redoak.Domain.Model.Models
     public class SalesOrder
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity) ]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SalesOrderId { get; set; }
-        public int Quantity { get; set; }
-        public int UnitPrice { get; set; }
-        public int TotalPrice { get; set; }
+        [Column(TypeName = "decimal")]
+        public double Quantity { get; set; }
+        [Column(TypeName = "money")]
+        public double UnitPrice { get; set; }
+        [Column(TypeName = "money")]
+        public double TotalPrice { get; set; }
+        [Column(TypeName = "nvarchar(400)")]
         public string Note { get; set; }
 
-        [ForeignKey("SaleId")]
         public int SaleId { get; set; }
-        public Sale Sale { get; set; }
-        [ForeignKey("CustomerId")]
-        public int CustomerId  { get; set; }
-        public Customer Customer { get; set; }
-        [ForeignKey("GoodsSpecId")]
+        public virtual Sale Sale { get; set; }
+        public int CustomerId { get; set; }
+        public virtual Customer Customer { get; set; }
         public int GoodsSpecId { get; set; }
-        public GoodsSpec GoodsSpec { get; set; }
+        public virtual GoodsSpec GoodsSpec { get; set; }
     }
 }
