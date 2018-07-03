@@ -21,6 +21,15 @@ namespace Redoak.Domain.Model.Models
         [Column(TypeName = "varchar(20)")]
         public string ContactPhone { get; set; }
 
+        [Column(TypeName = "varchar(10)")]
+        public string UpdateUser { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime UpdateDate { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime CrateDate { get; set; }
+        [Column(TypeName = "varchar(10)")]
+        public string CreateUser { get; set; }
+
         public int RegionId { get; set; }
         public virtual Region Region { get; set; }
     }

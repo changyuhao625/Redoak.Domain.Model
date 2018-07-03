@@ -11,9 +11,10 @@ using System;
 namespace Redoak.Domain.Model.Migrations
 {
     [DbContext(typeof(RedoakContext))]
-    partial class RedoakContextModelSnapshot : ModelSnapshot
+    [Migration("20180626060610_AddCustomerCreateDate")]
+    partial class AddCustomerCreateDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

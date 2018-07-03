@@ -25,5 +25,7 @@ namespace Redoak.Domain.Model.Models
         public virtual Customer Customer { get; set; }
         public int GoodsSpecId { get; set; }
         public virtual GoodsSpec Spec { get; set; }
+
+        public int AreaId { get; set; }
     }
 }

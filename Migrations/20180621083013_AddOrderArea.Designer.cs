@@ -11,9 +11,10 @@ using System;
 namespace Redoak.Domain.Model.Migrations
 {
     [DbContext(typeof(RedoakContext))]
-    partial class RedoakContextModelSnapshot : ModelSnapshot
+    [Migration("20180621083013_AddOrderArea")]
+    partial class AddOrderArea
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -193,22 +194,10 @@ namespace Redoak.Domain.Model.Migrations
                     b.Property<string>("ContactPhone")
                         .HasColumnType("varchar(20)");
 
-                    b.Property<DateTime>("CrateDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("CreateUser")
-                        .HasColumnType("varchar(10)");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("RegionId");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("UpdateUser")
-                        .HasColumnType("varchar(10)");
 
                     b.HasKey("Id");
 
